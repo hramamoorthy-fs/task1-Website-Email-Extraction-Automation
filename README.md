@@ -1,8 +1,8 @@
 # Automated Business Email Scraper
 
-![Python]
-![Pandas]
-![BeautifulSoup]
+Python
+Pandas
+BeautifulSoup
 ## 📖 Table of Contents
 - [Project Overview](#project-overview)
 - [Tech Stack](#tech-stack)
