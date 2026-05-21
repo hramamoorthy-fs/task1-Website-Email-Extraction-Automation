@@ -47,5 +47,5 @@ The objective of this script is to ingest a CSV containing a list of target comp
 📁 Project Directory
  ├── 📄 scraper.py                              # The main Python extraction script
  ├── 📄 Summer-Intern-Company-Data - Sheet1.csv # Input data (List of companies & URLs)
- ├── 📄 New_Scraped_Emails.csv                  # Auto-generated output data
+ ├── 📄 Final_Output_1_Email_Per_Row.csv        # Auto-generated output data
  └── 📄 README.md                               # Project documentation
