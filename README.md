@@ -1,4 +1,4 @@
-# Automated Business Email Scraper
+# Automated Website Email Scraper
 
 Python ||
 Pandas ||
