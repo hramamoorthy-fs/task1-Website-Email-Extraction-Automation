@@ -1,9 +1,8 @@
-# 🕵️‍♂️ Automated Business Email Scraper
+# Automated Business Email Scraper
 
-![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
-![Pandas](https://img.shields.io/badge/Pandas-Data_Processing-green.svg)
-![BeautifulSoup](https://img.shields.io/badge/BeautifulSoup-Web_Scraping-orange.svg)
-
+![Python]
+![Pandas]
+![BeautifulSoup]
 ## 📖 Table of Contents
 - [Project Overview](#project-overview)
 - [Tech Stack](#tech-stack)
