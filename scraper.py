@@ -48,13 +48,12 @@ def process_company(company_name, base_url):
     
     home_emails, internal_links = extract_emails_from_page(formatted_url)
     extracted_data = []
-    processed_emails = set()
     
     def add_emails(emails, source_page):
+        # Only add the VERY FIRST email we find
         for email in emails:
-            email = email.lower()
-            if email not in processed_emails:
-                processed_emails.add(email)
+            if len(extracted_data) == 0:
+                email = email.lower()
                 extracted_data.append({
                     "company_name": company_name,
                     "website_url": base_url,
@@ -62,20 +61,28 @@ def process_company(company_name, base_url):
                     "email_type": get_email_type(email),
                     "source_page": source_page
                 })
+                break # Stop processing other emails on this page
 
+    # 1. Check Homepage first
     add_emails(home_emails, "Home / Footer")
     
-    pages_to_crawl = set()
-    for link in internal_links:
-        if any(keyword in link.lower() for keyword in TARGET_PAGES):
-            pages_to_crawl.add(link)
-            
-    for page_url in pages_to_crawl:
-        page_emails, _ = extract_emails_from_page(page_url)
-        source_name = page_url.strip('/').split('/')[-1].title() + " Page"
-        add_emails(page_emails, source_name)
+    # 2. If no email found on homepage, check sub-pages
+    if len(extracted_data) == 0:
+        pages_to_crawl = set()
+        for link in internal_links:
+            if any(keyword in link.lower() for keyword in TARGET_PAGES):
+                pages_to_crawl.add(link)
+                
+        for page_url in pages_to_crawl:
+            # If we already found an email on a previous sub-page, stop crawling!
+            if len(extracted_data) > 0:
+                break
+                
+            page_emails, _ = extract_emails_from_page(page_url)
+            source_name = page_url.strip('/').split('/')[-1].title() + " Page"
+            add_emails(page_emails, source_name)
         
-    # If no emails were found, ensure the company is still added to the sheet
+    # 3. If STILL no emails were found, add the "Not Found" row
     if len(extracted_data) == 0:
         extracted_data.append({
             "company_name": company_name,
@@ -91,8 +98,8 @@ def main():
     # Input file name
     input_file = 'Summer-Intern-Company-Data - Sheet1.csv'
     
-    # NEW output file name so it creates a fresh CSV sheet
-    output_file = 'New_Scraped_Emails.csv'
+    # NEW output file name so it creates a completely fresh CSV sheet
+    output_file = 'Final_Output_1_Email_Per_Row.csv'
 
     try:
         input_df = pd.read_csv(input_file)
@@ -126,7 +133,6 @@ def main():
         columns = ["company_name", "website_url", "email", "email_type", "source_page"]
         output_df = output_df[columns]
         
-        # This creates the new CSV sheet
         output_df.to_csv(output_file, index=False)
         print(f"\nSuccess! The brand new CSV sheet has been created and saved as: {output_file}")
     else:
