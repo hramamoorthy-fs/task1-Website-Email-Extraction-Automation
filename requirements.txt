@@ -37,6 +37,6 @@ Ensure the input dataset (Summer-Intern-Company-Data - Sheet1.csv) is located in
 Execute the pipeline by running:
 
 Bash
-python scraper1.py
+python scraper.py
 
 Upon successful execution, the script will generate a compiled artifact named Final_Output_1_Email_Per_Row.csv in the root directory.
