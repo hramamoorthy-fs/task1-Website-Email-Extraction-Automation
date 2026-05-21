@@ -1,0 +1,42 @@
+. Setup and Installation
+
+**Step 1: Open the Project in VS Code**
+1. Extract the project folder to your local machine.
+2. Open **Visual Studio Code**.
+3. Navigate to `File` > `Open Folder...` and select the extracted project directory.
+
+**Step 2: Open the Terminal**
+1. Open a new terminal inside VS Code by clicking `Terminal` > `New Terminal` from the top navigation bar.
+
+**Step 3: Create a Virtual Environment (Recommended)**
+To ensure project dependencies do not interfere with your system's global Python environment, run the following commands in your VS Code terminal:
+```bash
+python -m venv venv
+
+# To activate on Windows (PowerShell):
+.\venv\Scripts\activate
+
+# To activate on Mac/Linux (Bash):
+source venv/bin/activate
+Step 4: Install Required Libraries
+This project requires pandas, requests, and beautifulsoup4 to run. With your terminal open, you can install these dependencies using one of two methods:
+
+Option A: Install via requirements.txt (Best Practice)
+
+Bash
+pip install -r requirements.txt
+Option B: Install manually directly in the terminal
+
+Bash
+pip install pandas requests beautifulsoup4
+
+
+5. Execution Steps
+Ensure the input dataset (Summer-Intern-Company-Data - Sheet1.csv) is located in the root directory alongside scraper1.py.
+
+Execute the pipeline by running:
+
+Bash
+python scraper1.py
+
+Upon successful execution, the script will generate a compiled artifact named Final_Output_1_Email_Per_Row.csv in the root directory.
